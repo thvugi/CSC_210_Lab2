@@ -7,6 +7,7 @@ Clothes::Clothes(){
     Item one;
     Item two;
     Item three;
+    ///initializes the structs
 }
 Shirt::Shirt(){
     Shirt::one.category = "Red Shirt";
@@ -19,6 +20,8 @@ Shirt::Shirt(){
     Shirt::two.amount = 0;
     Shirt::three.amount = 0;
     Shirt::discountCriteria(.15,2);
+
+    ///the default criterias for the class
 }
 Pants::Pants(){
     Pants::one.category = "Silk Pants";
@@ -31,6 +34,8 @@ Pants::Pants(){
     Pants::two.amount = 0;
     Pants::three.amount = 0;
     Pants::discountCriteria(.15,2);
+
+     ///the default criterias for the class
 }
 Shoes::Shoes(){
     Shoes::one.category = "Nike";
@@ -43,45 +48,45 @@ Shoes::Shoes(){
     Shoes::two.amount = 0;
     Shoes::three.amount = 0;
     Shoes::discountCriteria(0,2);
+
+     ///the default criterias for the class
 }
 
-void Shirt:: discountCriteria(float dchange, int crit){
-    Shirt::discount = dchange;
-    Shirt::criteria = crit;
+void Clothes:: discountCriteria(float dchange, int crit){
+    Clothes::discount = dchange;
+    Clothes::criteria = crit;
+
+    //discount criteria setting
 }
-void Pants:: discountCriteria(float dchange, int crit){
-    Pants::discount = dchange;
-    Pants::criteria = crit;
-}
-void Shoes:: discountCriteria(float dchange, int crit){
-    Shoes::discount = dchange;
-    Shoes::criteria = crit;
-}
+
 float Shirt::discountApply(){
         int sum = one.amount+two.amount+three.amount;
         float pricesum;
         pricesum = one.amount*one.price + two.amount*two.price + three.amount*three.price;
        total = pricesum;
-        if(sum > 2){
+        if(sum > Shirt::criteria){
             
             return Shirt::discount*pricesum;
         }
         else{
             return pricesum;
         }
+
+        //these methods are pure virtual because each function may be slightly different 
 }
 float Pants::discountApply(){
         int sum = one.amount+two.amount+three.amount;
         float pricesum;
         pricesum = one.amount*one.price + two.amount*two.price + three.amount*three.price;
        total = pricesum;
-        if(sum > 2){
+        if(sum > Pants::criteria){
             
             return Pants::discount*pricesum;
         }
         else{
             return pricesum;
         }
+        //these methods are pure virtual because each function may be slightly different 
 }
 float Shoes::discountApply(){
         int sum = one.amount+two.amount+three.amount;
@@ -94,10 +99,13 @@ float Shoes::discountApply(){
             savings = one.amount%count*one.price + two.amount%count*two.price + three.amount%count*three.price;
             pricesum = pricesum - savings;
     return pricesum;
-       
+       /*these methods are pure virtual because each function may be slightly different 
+       as seen this is buy 2 get one free and the others is buy more than 2 */
 }
 
 void Clothes::howMany(){
+
+    // a loop that shows each item of each item type
     for(int i = 1; i < 4; i++){
         if(i == 1){
             if(one.amount == 0){
@@ -126,15 +134,14 @@ void Clothes::howMany(){
     }
 }
 
-float Clothes::showPrice(){
-   
-    }
 
 
 ShoppingCart::ShoppingCart(Shirt x, Pants y, Shoes z){
     Shirt a = x;
     Pants b = y;
-    Shoes c = z;
+    Shoes c = z; 
+
+    ///uses composition to set the three classes to the shopping cart class.
 }
 
 void ShoppingCart::showCart(){
@@ -142,13 +149,21 @@ void ShoppingCart::showCart(){
     a.howMany();
     b.howMany();
     c.howMany();
+
+    ///shows how many of each item there are for the shopping cart
 }
 
 float Clothes::getTotal(){
     return Clothes::total;
+
+    ///returns the total number of items which will be inherited to the other derived classes.
 }
 
 void ShoppingCart::showPrice(){
+
+    /*this class uses a loop and a switch to show the price of the item after a discount has been deducted from 
+    the pirce. This goes through case by case for each of the class. */
+    
     cout<<"Total"<<endl;
 
 
