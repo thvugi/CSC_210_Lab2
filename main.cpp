@@ -4,23 +4,30 @@
 using namespace std;
 
 int main(){
+
+    /// initialize the three classes
     Shirt shirt;
    
     Pants pants;
    
     Shoes shoe;
     
-    ShoppingCart cart(shirt, pants, shoe);
+    ShoppingCart cart(shirt, pants, shoe); ///init the shopping cart with the three clothes classes
+
+    ///initialize the loop variables and chooser variable for the menu
 
     bool end = false;
     bool purchase = true;
     int option;
-    while(end == false){
+
+
+
+    while(end == false){ ///this is the loop which determines whether the program runs or stops
         cout<<"Shopping"<<endl<<"Add Items: press 1"<<endl<<"Display Cart: press 2"<<endl<<"Display Total: press 3"<<end<<"Exit: press 4"<<endl;
-        cin>>option;
-        switch(option){
-            case(1):
-                while(purchase == true){
+        cin>>option;/// input menu
+        switch(option){ ///switch to choose what menu item is chosen
+            case(1): ///add items
+                while(purchase == true){ ///in case the user wants to add more items
                     cout<<"Select a color for your shirt: "<<endl;
                     cout<<"1. "<<shirt.one.category<<endl<<"2. "<<shirt.two.category<<endl<<"3. "<<shirt.three.category<<endl;
                     cin>>option;
@@ -89,12 +96,12 @@ int main(){
                     }
                 }
                 option = 1;
-            case(2):
+            case(2): ///shows the cart
                 cart.showCart();
             case(3):
-                cart.showPrice();
+                cart.showPrice(); ///shows the price after deduction
             case(4):
-                end = true;
+                end = true; ///exits the program
                 break;
 
         }
